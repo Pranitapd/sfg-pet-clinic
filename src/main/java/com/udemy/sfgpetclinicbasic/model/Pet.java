@@ -32,4 +32,6 @@ public class Pet {
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
+
+    //Just comment to close issue1
 }
