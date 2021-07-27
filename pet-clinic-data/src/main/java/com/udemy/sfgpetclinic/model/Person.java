@@ -2,7 +2,7 @@ package com.udemy.sfgpetclinic.model;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
 
-public class Person {
+public class Person extends BaseEntity {
     private String firstName;
     private String lastName;
 

@@ -7,14 +7,13 @@ import java.io.Serializable;
 
 public class BaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;        //hibernate recommends to use box Long instead of long
 
-    public BaseEntity(Long id) {
+    public Long getId() {
+        return id;
     }
 
-    private boolean isNew(){
-        return this.id == null;
+    public void setId(Long id) {
+        this.id = id;
     }
 }
