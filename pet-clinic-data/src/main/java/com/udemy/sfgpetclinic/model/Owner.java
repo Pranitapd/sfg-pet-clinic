@@ -1,5 +1,6 @@
 package com.udemy.sfgpetclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Owner extends Person{
@@ -7,7 +8,7 @@ public class Owner extends Person{
         private String city;
         private String Telephone;
 
-        private Set<Pet> pets;
+        private Set<Pet> pets = new HashSet<>();        //to avoid nullpointer exception when we call get
 
     public String getAddress() {
         return address;

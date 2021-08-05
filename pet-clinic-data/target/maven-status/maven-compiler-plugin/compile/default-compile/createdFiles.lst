@@ -1,6 +1,9 @@
 com\udemy\sfgpetclinic\services\PetService.class
+com\udemy\sfgpetclinic\services\PetTypeService.class
 com\udemy\sfgpetclinic\model\Owner.class
+com\udemy\sfgpetclinic\model\Speciality.class
 com\udemy\sfgpetclinic\services\map\AbstractMapService.class
+com\udemy\sfgpetclinic\services\map\PetTypeServiceMap.class
 com\udemy\sfgpetclinic\services\OwnerService.class
 com\udemy\sfgpetclinic\model\PetType.class
 com\udemy\sfgpetclinic\services\VetService.class
@@ -8,6 +11,7 @@ com\udemy\sfgpetclinic\services\CrudService.class
 com\udemy\sfgpetclinic\model\Person.class
 com\udemy\sfgpetclinic\services\map\OwnerServiceMap.class
 com\udemy\sfgpetclinic\model\Pet.class
+com\udemy\sfgpetclinic\model\Visit.class
 com\udemy\sfgpetclinic\services\map\VetServiceMap.class
 com\udemy\sfgpetclinic\model\BaseEntity.class
 com\udemy\sfgpetclinic\model\Vet.class
