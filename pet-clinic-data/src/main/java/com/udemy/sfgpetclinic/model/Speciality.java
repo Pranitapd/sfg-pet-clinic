@@ -4,7 +4,7 @@ public class Speciality extends BaseEntity{
 
     private String description;
 
-    public String getDescription() {
+    public String getDescription(String radiology) {
         return description;
     }
 
