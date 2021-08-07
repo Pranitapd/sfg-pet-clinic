@@ -17,7 +17,7 @@ public class Visit extends BaseEntity{
     @Column(name = "description")
     private String description;
 
-    @ManyToOne      //inverse of what added in pet
+    @ManyToOne(cascade =  CascadeType.ALL)     //inverse of what added in pet
     @JoinColumn(name = "pet_id")
     private Pet pet;
 }
