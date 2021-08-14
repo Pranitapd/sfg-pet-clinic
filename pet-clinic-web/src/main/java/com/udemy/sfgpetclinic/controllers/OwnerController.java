@@ -2,21 +2,23 @@ package com.udemy.sfgpetclinic.controllers;
 
 import com.udemy.sfgpetclinic.model.Owner;
 import com.udemy.sfgpetclinic.services.OwnerService;
+import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/owners")
 @Controller
 public class OwnerController {
+
+    private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
     private final OwnerService ownerService;        //create final so it can never be changed
 
@@ -72,6 +74,50 @@ public class OwnerController {
             //multiple owners found
             model.addAttribute("selections", results);
             return "owners/ownersList";
+        }
+    }
+
+    @GetMapping("/new")
+    //public String initCreationForm(Map<String, Object> model){
+    public String initCreationForm(Model model){
+        //Owner owner = new Owner();
+        //Owner owner = Owner.builder().build();
+        //model.put("owner", owner);
+        model.addAttribute("owner",Owner.builder().build());
+        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/new")
+    public String processCreationForm(@Valid Owner owner, BindingResult result){
+        if(result.hasErrors()){
+            return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        }
+        else {
+            //this.ownerService.save(owner);
+            Owner savedOwner = ownerService.save(owner);
+            //return "redirect:/owners" + owner.getId();
+            return "redirect:/owners" + savedOwner.getId();
+        }
+    }
+
+    @GetMapping("/{ownerId}/edit")
+    public String initUpdateOwnerForm(@PathVariable int ownerId, Model model){
+        Owner owner = this.ownerService.findById(Long.valueOf(ownerId));
+        model.addAttribute(owner);
+        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/{ownerId}/edit")
+    public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result, @PathVariable int ownerId){
+        if(result.hasErrors()){
+            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        }
+        else {
+            owner.setId(Long.valueOf(ownerId));
+            //this.ownerService.save(owner);
+            Owner savedOwner = ownerService.save(owner);
+            //return "redirect:/owners/{ownerId}";
+            return "redirect:/owners/" + savedOwner.getId();
         }
     }
 }
